@@ -1,11 +1,26 @@
-public class pract1 {
-    public static void main(String[] args) {
-       int n=5;
-        for(int i=0;i<=n;i++) {
-            for (int j = 0; j <= i; j++) {
-                System.out.print("*");
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Build is done'
             }
-            System.out.println();
+        }
+            stage('Test') {
+            steps {
+                echo 'Testing is completed'
+            }
+        }
+             stage('Deploy') {
+            steps {
+                echo 'Deployment is done'
+            }
+        }
+    }
+    post{
+        always{
+           emailext body: 'summary', subject: 'Pipeline', to: 'kavadiusharani@gmail.com'
         }
     }
 }
